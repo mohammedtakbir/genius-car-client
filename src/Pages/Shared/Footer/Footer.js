@@ -1,33 +1,36 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.svg'
 
 const Footer = () => {
     return (
-        <div className='bg-black mt-20'>
-            <footer className="footer container mx-auto px-[130px] py-[110px] text-white">
+        <div className='bg-black py-14 mt-10'>
+            <footer className="footer p-10 container mx-auto text-white">
                 <div>
-                    <img src={logo} alt="" />
+                    <Link to='/'>
+                        <img src={logo} alt="" />
+                    </Link>
                     <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
                 </div>
                 <div>
-                    <span className="text-lg font-medium mb-2">Services</span>
-                    <a href="/" className="link link-hover">Branding</a>
-                    <a href="/" className="link link-hover">Design</a>
-                    <a href="/" className="link link-hover">Marketing</a>
-                    <a href="/" className="link link-hover">Advertisement</a>
+                    <span className="footer-title">Services</span>
+                    <Link className="link link-hover">Branding</Link>
+                    <Link className="link link-hover">Design</Link>
+                    <Link className="link link-hover">Marketing</Link>
+                    <Link className="link link-hover">Advertisement</Link>
                 </div>
                 <div>
-                    <span className="text-lg font-medium mb-2">Company</span>
-                    <a href="/" className="link link-hover">About us</a>
-                    <a href="/" className="link link-hover">Contact</a>
-                    <a href="/" className="link link-hover">Jobs</a>
-                    <a href="/" className="link link-hover">Press kit</a>
+                    <span className="footer-title">Company</span>
+                    <Link className="link link-hover">About us</Link>
+                    <Link className="link link-hover">Contact</Link>
+                    <Link className="link link-hover">Jobs</Link>
+                    <Link className="link link-hover">Press kit</Link>
                 </div>
                 <div>
-                    <span className="text-lg font-medium mb-2">Legal</span>
-                    <a href="/" className="link link-hover">Terms of use</a>
-                    <a href="/" className="link link-hover">Privacy policy</a>
-                    <a href="/" className="link link-hover">Cookie policy</a>
+                    <span className="footer-title">Legal</span>
+                    <Link className="link link-hover">Terms of use</Link>
+                    <Link className="link link-hover">Privacy policy</Link>
+                    <Link className="link link-hover">Cookie policy</Link>
                 </div>
             </footer>
         </div>

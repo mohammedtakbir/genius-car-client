@@ -1,41 +1,47 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
-import { AuthContext } from '../../contexts/AuthProvider';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Signup = () => {
     const { createUser } = useContext(AuthContext);
-    const handleSignUp = (e) => {
+
+    const handleSignup = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-
         createUser(email, password)
-            .then(res => console.log(res.user))
+            .then(res => {
+                toast.success('successfully Sign up!')
+                console.log(res.user)
+            })
             .catch(err => console.error(err))
     }
 
     return (
-        <>
-            <div className="hero pt-16">
+        <div className='py-10'>
+            <div className="hero">
                 <div className="hero-content flex-col lg:flex-row gap-10">
-                    <div className="text-center lg:text-left">
-                        <img src={img} alt="" className='w-full' />
+                    <div className="">
+                        <img src={img} alt="" />
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <p className='text-4xl text-center mt-7 font-bold'>Sign Up</p>
-                        <form onSubmit={handleSignUp} className="p-5">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border">
+                        <h2 className='mt-6 text-center text-3xl font-bold'>Sign Up</h2>
+                        <form onSubmit={handleSignup} className="p-5 pb-0">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input
                                     type="text"
-                                    name='name'
-                                    placeholder="Your name"
+                                    name="name"
+                                    placeholder="Your Name"
                                     className="input input-bordered"
+                                    required
                                 />
                             </div>
                             <div className="form-control">
@@ -44,8 +50,8 @@ const Signup = () => {
                                 </label>
                                 <input
                                     type="email"
-                                    name='email'
-                                    placeholder="Email address"
+                                    name="email"
+                                    placeholder="Your Email"
                                     className="input input-bordered"
                                     required
                                 />
@@ -56,21 +62,23 @@ const Signup = () => {
                                 </label>
                                 <input
                                     type="password"
-                                    name='password'
-                                    placeholder="password"
+                                    name="password"
+                                    placeholder="Password"
                                     className="input input-bordered"
                                     required
                                 />
                             </div>
                             <div className="form-control mt-6">
-                                <input type="submit" value="Login" className="btn btn-success text-white" />
+                                <button type='submit' className="btn btn-success">Sign Up</button>
                             </div>
                         </form>
-                        <p className='text-center mb-4'>Already have an account? <Link to='/login' className='text-green-500 hover:underline'>Login</Link></p>
+                        <p className='text-center mt-3 mb-4'>
+                            <small>Already have an account? <Link to='/login' className='underline text-green-500'>Login</Link></small>
+                        </p>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

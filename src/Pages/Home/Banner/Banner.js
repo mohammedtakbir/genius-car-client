@@ -47,37 +47,14 @@ const Banner = () => {
         }
     ];
     return (
-        <div>
-            <div className="carousel w-full py-10">
-
+        <div className='container mx-auto pb-12 pt-2'>
+            <div className="carousel w-full">
                 {
-                    bannerData.map(slide => <BannerItem 
-                    key={slide.id}
-                    slide={slide}
+                    bannerData.map(slide => <BannerItem
+                        key={slide.id}
+                        slide={slide}
                     />)
                 }
-                {/* <BannerItem image={img1} />
-                <div id="slide2" className="carousel-item relative w-full">
-                    <img src={img2} alt='' className="w-full" />
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide1" className="btn btn-circle">❮</a>
-                        <a href="#slide3" className="btn btn-circle">❯</a>
-                    </div>
-                </div> */}
-                {/* <div id="slide3" className="carousel-item relative w-full">
-                    <img src={img3} alt='' className="w-full" />
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide2" className="btn btn-circle">❮</a>
-                        <a href="#slide4" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide4" className="carousel-item relative w-full">
-                    <img src={img4} alt='' className="w-full" />
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide3" className="btn btn-circle">❮</a>
-                        <a href="#slide1" className="btn btn-circle">❯</a>
-                    </div>
-                </div> */}
             </div>
         </div>
     );
