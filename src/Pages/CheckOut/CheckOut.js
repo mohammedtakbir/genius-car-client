@@ -2,10 +2,10 @@ import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../Contexts/AuthProvider';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const CheckOut = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext)
     const service = useLoaderData();
     const { title, price, _id } = service;
 
@@ -30,13 +30,14 @@ const CheckOut = () => {
         fetch(`http://localhost:5000/orders`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify(order)
         })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     toast.success('order placed')
                 }
                 console.log(data)
@@ -55,18 +56,21 @@ const CheckOut = () => {
                         name='firstName'
                         placeholder="First Name"
                         className="input input-bordered w-full"
+                        required
                     />
                     <input
                         type="text"
                         name='lastName'
                         placeholder="Last Name"
                         className="input input-bordered w-full"
+                        required
                     />
                     <input
                         type="phone"
                         name='phone'
                         placeholder="Your Phone"
                         className="input input-bordered w-full"
+                        required
                     />
                     <input
                         type="email"
@@ -80,6 +84,7 @@ const CheckOut = () => {
                 <textarea
                     className="textarea textarea-bordered h-24 w-full my-4"
                     name='message'
+                    required
                     placeholder="Your Message"></textarea>
                 <input
                     type="submit"

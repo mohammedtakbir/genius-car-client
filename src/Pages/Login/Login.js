@@ -1,12 +1,15 @@
 import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
-import { AuthContext } from '../../Contexts/AuthProvider';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
-    const {userLogin} = useContext(AuthContext);
+    const { userLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -16,8 +19,25 @@ const Login = () => {
 
         userLogin(email, password)
             .then(res => {
-                toast.success('successfully Login!')
-                console.log(res.user)
+                const user = res.user;
+                const currentUser = {
+                    email: user?.email
+                }
+                //* get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        navigate(from);
+                        toast.success('successfully Login!')
+                        //* local storage is the easiest but not the best place to store jwt token
+                        localStorage.setItem('genius-token', data.token);
+                    })
             })
             .catch(err => console.error(err))
     }

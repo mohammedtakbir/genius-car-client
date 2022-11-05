@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
-import { AuthContext } from '../../Contexts/AuthProvider';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
     const { createUser } = useContext(AuthContext);
