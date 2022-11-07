@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { setAuthToken } from '../../API/Auth';
 import img from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../contexts/AuthProvider';
 
@@ -16,6 +17,7 @@ const Signup = () => {
 
         createUser(email, password)
             .then(res => {
+                setAuthToken(res);
                 toast.success('successfully Sign up!')
                 console.log(res.user)
             })

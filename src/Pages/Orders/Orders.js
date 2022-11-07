@@ -12,7 +12,7 @@ const Orders = () => {
     // const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+        fetch(`https://genius-car-server-ruby-eta.vercel.app/orders?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('genius-token')}`
             }
@@ -31,7 +31,7 @@ const Orders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure, you want to delete this order?')
         if (proceed) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://genius-car-server-ruby-eta.vercel.app/orders/${id}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('genius-token')}`
                 },
@@ -51,7 +51,7 @@ const Orders = () => {
     };
 
     const handleStatusUpdated = (id) => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://genius-car-server-ruby-eta.vercel.app/orders/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

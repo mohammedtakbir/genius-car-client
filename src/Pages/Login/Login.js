@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../contexts/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { userLogin } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const Login = () => {
                     email: user?.email
                 }
                 //* get jwt token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://genius-car-server-ruby-eta.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -82,7 +83,8 @@ const Login = () => {
                                 <button type='submit' className="btn btn-success">Login</button>
                             </div>
                         </form>
-                        <p className='text-center mt-3 mb-4'>
+                        <SocialLogin />
+                        <p className='text-center mb-4'>
                             <small>Have an account? <Link to='/signup' className='underline text-green-500'>Sign In</Link></small>
                         </p>
                     </div>
